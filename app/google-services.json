@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "31508125091",
+    "firebase_url": "https://whattoeat-fbab4.firebaseio.com",
+    "project_id": "whattoeat-fbab4",
+    "storage_bucket": "whattoeat-fbab4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:31508125091:android:7e9f0ec03c1d70d7683616",
+        "android_client_info": {
+          "package_name": "com.jashar.whattoeat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "31508125091-jkj4386oskjfi064cvsmjd6fal503399.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAKrbZdE49XFAetL4-9xyRtkCIKTrA6akc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "31508125091-jkj4386oskjfi064cvsmjd6fal503399.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

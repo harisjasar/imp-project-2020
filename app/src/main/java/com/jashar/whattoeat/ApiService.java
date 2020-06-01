@@ -7,6 +7,7 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.jashar.whattoeat.model.MenuModel;
+import com.jashar.whattoeat.model.RestaurantNameLatLngModel;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -50,4 +51,37 @@ public class ApiService {
         return menuModels;
 
     }
+
+
+    public static List<RestaurantNameLatLngModel> getAllRestaurantsMetaData(RequestQueue requestQueue) {
+
+        String url =  String.format("%s/restaurants", api_service_url);
+        final List<RestaurantNameLatLngModel> restaurantModels = new ArrayList<>();
+        JsonArrayRequest request =  new JsonArrayRequest(Request.Method.GET, url,null, response -> {
+
+            try {
+                for(int i = 0; i < response.length(); i++){
+                    JSONObject a = response.getJSONObject(i);
+                    System.out.println(a);
+                    RestaurantNameLatLngModel model = new RestaurantNameLatLngModel(a.getString("mName"), a.getString("mTag"), a.getDouble("mLat"), a.getDouble("mLng"));
+                    restaurantModels.add(model);
+                }
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+        }, error -> {
+            Log.e("AllRestaurantsMetaData", error.toString());
+        });
+
+        request.setRetryPolicy(new DefaultRetryPolicy( 50000, 5, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        requestQueue.add(request);
+
+        return restaurantModels;
+
+    }
+
+
+
 }

@@ -4,4 +4,6 @@
     <color name="colorPrimaryDark">#000000</color>
     <color name="colorAccent">#FF3B00</color>
     <color name="colorLightText">#929292</color>
+    <color name="InactiveBottomNavIconColor">#c9bebe</color>
+
 </resources>

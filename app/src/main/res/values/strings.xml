@@ -2,5 +2,5 @@
     <string name="app_name">WhatToEat</string>
     <string name="title_home">Cravings</string>
     <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_notifications">All Restaurant Map</string>
 </resources>

@@ -1,6 +1,7 @@
 package com.jashar.whattoeat.ui.home;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Parcelable;
@@ -39,6 +40,7 @@ public class HomeFragment extends Fragment {
     private EditText textViewCravingOne;
     private Button buttonCrave;
     private RequestQueue requestQueue;
+    private MediaPlayer mp;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
@@ -46,7 +48,10 @@ public class HomeFragment extends Fragment {
         textViewCravingOne = root.findViewById(R.id.textViewCravingOne);
         buttonCrave = root.findViewById(R.id.buttonCrave);
 
+
         requestQueue = Volley.newRequestQueue(getActivity().getApplicationContext());
+
+        mp = new MediaPlayer();
 
 
         buttonCrave.setOnClickListener(v -> {
@@ -54,20 +59,22 @@ public class HomeFragment extends Fragment {
             ArrayList<MenuModel> menusList = (ArrayList<MenuModel>) ApiService.getAllMenus(requestQueue, textViewCravingOne.getText().toString());
 
             Handler handler = new Handler();
-            handler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    if(menusList.isEmpty()){
-                        Toast.makeText(getContext(), "No meals found for desired craving! Try craving something else!", Toast.LENGTH_LONG).show();
-                    }else{
-                        System.out.println(textViewCravingOne.getText().toString());
-                        Intent activity2Intent = new Intent(getContext(), MatchFoundActivity.class);
+            handler.postDelayed(() -> {
+                if(menusList.isEmpty()){
+                    mp = MediaPlayer.create(getContext(), R.raw.failure);
+                    mp.start();
+                    Toast.makeText(getContext(), "No meals found for desired craving! Try craving something else!", Toast.LENGTH_LONG).show();
 
-                        activity2Intent.putParcelableArrayListExtra("SomeValue", menusList);
-                        startActivity(activity2Intent);
-                    }
+                }else{
+                    mp = MediaPlayer.create(getContext(), R.raw.eating);
+                    mp.start();
+                    System.out.println(textViewCravingOne.getText().toString());
+                    Intent activity2Intent = new Intent(getContext(), MatchFoundActivity.class);
+
+                    activity2Intent.putParcelableArrayListExtra("SomeValue", menusList);
+                    startActivity(activity2Intent);
                 }
-            }, 300);
+            }, 500);
         });
 
 

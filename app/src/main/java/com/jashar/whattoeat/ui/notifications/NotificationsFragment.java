@@ -76,40 +76,21 @@ public class NotificationsFragment extends Fragment implements OnMapReadyCallbac
             @Override
             public void run() {
                 if(restaurantList.isEmpty()){
-                    Toast.makeText(getContext(), "No meals found for desired craving! Try craving something else!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(), "No restaurants found!", Toast.LENGTH_LONG).show();
                 }else{
                     MapsInitializer.initialize(getContext());
                     mGoogleMap = googleMap;
                     googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
 
-                    googleMap.addMarker(new MarkerOptions().position(new LatLng(40.689247,-74.044502)).title("Statue of Liberty").snippet("I hope to be here one day"));
                     for(RestaurantNameLatLngModel model : restaurantList){
                         googleMap.addMarker(new MarkerOptions().position(new LatLng(model.getmLat(), model.getmLng())).title(model.getmName()).snippet(model.getmTag()));
                     }
 
                     CameraPosition Liberty = CameraPosition.builder().target(new LatLng(restaurantList.get(0).getmLat(), restaurantList.get(0).getmLng())).zoom(16).bearing(0).tilt(45).build();
-
                     googleMap.moveCamera(CameraUpdateFactory.newCameraPosition(Liberty));
-                    //System.out.println(textViewCravingOne.getText().toString());
-                    // Intent activity2Intent = new Intent(getContext(), MatchFoundActivity.class);
 
-                    //activity2Intent.putParcelableArrayListExtra("SomeValue", menusList);
-                    //startActivity(activity2Intent);
                 }
             }
-        }, 300);
-
-
-        MapsInitializer.initialize(getContext());
-        mGoogleMap = googleMap;
-        googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-
-        googleMap.addMarker(new MarkerOptions().position(new LatLng(40.689247,-74.044502)).title("Statue of Liberty").snippet("I hope to be here one day"));
-
-        CameraPosition Liberty = CameraPosition.builder().target(new LatLng(40.689247,-74.044502)).zoom(16).bearing(0).tilt(45).build();
-
-        googleMap.moveCamera(CameraUpdateFactory.newCameraPosition(Liberty));
-
-
+        }, 500);
     }
 }

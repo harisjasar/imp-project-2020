@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="5dp"
+    app:cardCornerRadius="4dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="4dp">>
+
+        <TextView
+            android:id="@+id/textViewMealName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginBottom="5dp"
+            android:text="Hamburger" />
+
+        <TextView
+            android:id="@+id/textViewPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textViewMealName"
+            android:layout_marginStart="8dp"
+            android:layout_marginBottom="5dp"
+            android:text="32.15" />
+
+        <TextView
+            android:id="@+id/textViewRestaurantName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textViewPrice"
+            android:layout_marginStart="8dp"
+            android:text="Kod Bate"
+            android:textSize="12sp" />
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>
